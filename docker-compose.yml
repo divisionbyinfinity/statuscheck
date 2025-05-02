@@ -1,0 +1,32 @@
+services:
+  status-api:
+    container_name: status-api
+    build:
+      context: ./backend
+    restart: unless-stopped
+    volumes:
+      - ./backend/config:/usr/src/app/config
+    ports:
+    - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - internal
+    user: root
+
+  frontend:
+    container_name: status-frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile  # You'll need to create one if it doesn't exist
+    ports:
+      - "8080:80"
+    networks:
+      - internal
+    depends_on:
+      - status-api
+
+# 👇 This must be at the root (same level as 'services')
+networks:
+  internal:
+    driver: bridge

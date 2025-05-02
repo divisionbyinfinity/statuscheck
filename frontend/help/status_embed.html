@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+<title>Status Checker: Embed a Status Check Badge in a Website</title>
+<link rel="icon" type="image/x-icon" href="../images/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Raleway|Roboto|Bebas+Neue" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap|Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100;200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twemoji/13.1.0/twemoji.min.css" rel="stylesheet">
+<link rel="stylesheet" href="defaults.css">
+<link rel="stylesheet" href="status_embed.css">
+</head>
+<body>
+<div class="page_frame">
+<div class="page90">
+<h1>Inserting Status Badges to your HTML</h1>
+<h2>Overview</h2>
+<p>You can use the included script, <strong>status_embed.js</strong>, to add a status badge to any website to return the status of a device, including servers.  The device and/or server <span style="color:#ef5350">DOES NOT</span> have to be registered as device in the <b>Status Checker</b> application: it will work for any device or server. You can create your own bage but you will want to look at the <strong>status_embed.js</strong> script to understand why certain elements needs to be included (basically, the classes ''present'', ''checkme'', and the button must be inside of ''checkme''.</p>
+<p>As long as the <b>script</b> and the <b>server</b> are accessible to the the server hosting the webpage - it will work.</p>
+<h3>Code Example</h3>
+<p>Below is the code snippet used to create the first example, in the section below:</p>
+<pre><code>
+&ltdiv class="status-box present"&gt<br>
+   &ltdiv class="icon"&gt&#x1F50D&lt/div&gt<br>
+   &ltdiv class="child-box-left checkme"&gt&ltbutton&gtPing&lt/button&gt&lt/div&gt<br>
+   &ltdiv class="child-box-right"&gt&lta href="https://microsoft.com"&gtmicrosoft.com&lt/a&gt&lt/div&gt<br>
+&lt/div&gt
+</pre></code>
+<p>Make sure the reference the script, as shown below, before the <b>&lt/body&gt</b>
+<pre><code>
+&ltscript src="./status_embded.js"&gt&lt/script&gt
+</pre></code>
+<h2>Examples</h2>
+<p>Below are some examples of <b>status badges</b> you can use on your website to show the status of a networked device.  In the examples, I used websites because they are publicly <i>pingable</i> but if you are adding a device, you will need to use the actual IP address of the device inside the <strong>href=""</strong> that is shown in the example html.</p> 
+<div class="bump"></div>
+
+<div class="status-box present">
+   <div class="icon">&#x1F50D</div>
+   <div class="child-box-left checkme"><button>Ping</button></div>
+   <div class="child-box-right"><a href="https://microsoft.com">microsoft.com</a></div>
+</div>
+
+<div class="status-box present">
+   <div class="topper">Text</div>
+   <div class="icon">&#x1F50D</div>
+   <div class="child-box-left checkme"><button>Ping</button><span class="ping-status"></span></div>
+   <div class="child-box-right"><a href="https://apple.com/">apple.com</a></div>
+</div>
+
+<div class="status-box present">
+   <div class="icon">&#x1F50D</div>
+   <div class="child-box-left checkme"><button>Ping</button></div>
+   <div class="child-box-right"><a href="https://google.com/">google.com</a></div>
+   <div class="topper">Text</div>
+</div>
+<h2>Javascript:</h2><h3>status_embed.js</h3>
+<p>To gain access to the <b>status_embed.js</b> script, you will need to contact the administrator.</p>
+<hr style="width: 100%; margin: 1rem 0 0rem 0; background-color: var(--cyan1); color: var(--cyan);">
+</div>
+</div>
+<script src="./status_embded.js"></script>
+</body>
+</html>

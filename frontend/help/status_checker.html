@@ -1,0 +1,63 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+<title>Universal Status Checker</title>
+<link rel="icon" type="image/x-icon" href="../images/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Raleway|Roboto|Bebas+Neue" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap|Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100;200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="accessibility.css">
+<link rel="stylesheet" href="defaults.css">
+</head>
+<body>
+<div class="page_frame">
+<div class="page90">
+<h1>Status Checker</h1>
+<h2>Monitor the Status of Networked Devices</h2>
+<h3>Overview</h3>
+<p>The <b>Status Checker</b> application attempts to <i>ping</i> registered devices at five minute intervals, and if the device does not respond after five minmutes, an email notification can be sent.  There is a dashboard on the initial screen, main dashboard, that shows the current status of a each device that is registered in the application.  You can add, edit and remove devices, and disable or snooze the email notifications from the <b>Status Check Settings</b> dashboard.</p>
+<h3>Main Dashboard</h3>
+<p>On the main dashboard you will see a table that shows all of the registered devices, along with relevant information and the current status of each. If a device is not responding (line is shown in <span style="color: var(--red2);">red</span>) or having trouble communicating with the server (line is shown in <span style="color: var(--blue3);">blue</span>) you can use the <strong>PING</strong> buttom at the beginning of the line to refresh the status. If you want to connect to the device, if using SSH you will need to configure the device to allow SSH, you can use the action button at the end of the line. The connection options are <strong>SSH</strong> and <strong>HTTPS</strong>: you specify the action type when registering the device.</p>
+<ul class="subli-container">
+<li>Filter Devices</li>
+<p>At the top of the screen there is a <b>Filter Devices</b> menu that allows you to sort filter by <b>Area</b> and/or <b>Department</b>.</p>
+</ul>
+<h3>Status Check Settings: Accessing the Administrator Features</h3>
+<p>To add, edit, or remove devices, or disbale or snooze the email notifications, click on the button with the image shown below to access the <b>Adminsitrator Features</b>.<p>
+<div style="margin: .5rem 0 .75rem 0; padding: .25rem;">
+<img style="width: 4rem; height: 4rem; padding: .5rem .75rem .5rem .5rem; border-radius: 4px; border: 1px solid #fff;" src="../images/tools.svg">
+</div>
+<p>You will be prompted for a password (these features are managed by your IT staff) and it will launch the <b>Adminsitrator Features</b> dashboard.  The <b>Adminsitrator Features</b> dashboard shows the registered devices in a table, very similar to the table on the main dashboard, and the administrator features are available at the end of the line under <strong>Admin</strong>.<p>
+<h3 style="margin-bottom: 0">Administrator Features</h3>
+<ul class="subli-container">
+<li class="subli">Registering A New Device</li>
+<p style="margin: 0 0 .5rem 0;">At the top of the bar, next to <strong>Admin</strong> you will see a blue circle with a plus sign inside. Click on it to add a device.  You will need to provide the (<b>see the live main dashboard for example values for each</b>):</p> 
+</ul>
+<ol style="margin: 0;">
+<li class="list">DNS Name</li>
+<li class="list">Description (example: Digital Sign)</li> 
+<li class="list">Area (manages the device: IT Departament)</li> 
+<li class="list">Location (building and room number)</li>
+<li class="list">Department (manages the content on the device)</li>
+<li class="list">IP Address</li>
+<li class="list">Device Type</li>
+</ol>
+<ul class="subli-container">
+<li class="subli">Removing A Registered Device</li>
+<p>On the line of the device you want to remove: click the the red cirlce with an X inside to remove the device.</p>
+<li class="subli">Changing the Settings of a Registered Device</li>
+<p>On the line of the device you want to edit: click the the blue circle with the image of a pencil inside to edit the device settings.</p>
+<li class="subli">Enabling/Disabling Email Notifications for a Registered Device</li>
+<p>On the line of the device you want to disable the email notifications on: click the toggle bar. When the email notifications are enabled the toggle button will move to the right and the toggle bar bacground will change to green.</p>
+<li class="subli">Temporarily Snoozing Email Notifications on a Registered Device</li>
+<p>On the line of the device you want to snooze the email notifications on: click the image of a bell.  You will be prompted to provide the number of days to snooze the email notifications, and the image will change so the bell now shows includes <b>Z z</b> to indicate it is snoozed.  Hovering over the image will reveal how long the device is snoozed. This is useful for when you are performing planned maintenance, or troubleshooting an issue with the device.</p>
+</ul>
+<hr style="width: 100%; margin: 1rem 0 0rem 0; background-color: var(--cyan1); color: var(--cyan);">
+</div>
+</body>
+</html>

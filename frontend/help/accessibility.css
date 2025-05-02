@@ -1,0 +1,96 @@
+/* Mobile Hide and Show */
+.mobileShow {display:none;text-align:center;}
+@media only screen and (min-device-width :320px) and (max-device-width :480px){.mobileShow {display:inline;}}
+.mobileHide {display:inline;}
+@media only screen and (min-device-width :320px)and (max-device-width :480px){.mobileHide { display:none;}}
+
+p::selection, p b::selection {
+  color: white;
+  background: var(--contrast-green);
+}
+
+
+p a::after {
+  display: none; 
+  content: '\f0c1';
+  font-weight: 900;
+  font: var(--fa-font-solid);
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+img:hover {cursor:zoom-in; }
+
+img:active {
+    transform:scale(1.5);
+    -ms-transform:scale(1.5); /* IE 9 */
+    -moz-transform:scale(1.5); /* Firefox */
+    -webkit-transform:scale(1.5); /* Safari and Chrome */
+    -o-transform:scale(1.5); /* Opera */
+}
+.encapsulate {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px 0;
+    flex: 0 0 17.3vw;
+    height: auto;
+    display: block;
+    transition: all 300ms;
+    color: #555;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.mark {
+    border-radius: 10px;
+    padding: 5px;
+    margin: 20px 0 20px 0;
+    flex: 0 0 17.3vw;
+    height: auto;
+    display: block;
+    transition: all 300ms;
+    color: #555;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    flex-direction: column;
+    overflow: hidden;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+    border-right: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.green-shadow {
+    box-shadow: rgba(68, 97, 31, 0.4) -5px -5px, 
+                rgba(68, 97, 31, 0.3) -10px -10px, 
+                rgba(68, 97, 31, 0.2) -15px -15px, 
+                rgba(68, 97, 31, 0.1) -20px -20px, 
+                rgba(68, 97, 31, 0.05) -25px -25px;
+}
+
+.gray-shadow {
+    box-shadow: rgba(24, 24, 24, 0.4) -5px -5px, 
+                rgba(24, 24, 24, 0.3) -10px -10px, 
+                rgba(24, 24, 24, 0.2) -15px -15px, 
+                rgba(24, 24, 24, 0.1) -20px -20px, 
+                rgba(24, 24, 24, 0.05) -25px -25px;
+}
+
+.red-shadow { 
+    box-shadow: rgba(204, 0, 0, 0.4) -5px -5px, 
+                rgba(204, 0, 0, 0.3) -10px -10px, 
+                rgba(204, 0, 0, 0.2) -15px -15px, 
+                rgba(204, 0, 0, 0.1) -20px -20px, 
+                rgba(204, 0, 0, 0.05) -25px -25px;
+}
+
+.blue-shadow { 
+    box-shadow: rgba(0, 102, 255, 0.4) -5px -5px, 
+                rgba(0, 102, 255, 0.3) -10px -10px, 
+                rgba(0, 102, 255, 0.2) -15px -15px, 
+                rgba(0, 102, 255, 0.1) -20px -20px, 
+                rgba(0, 102, 255, 0.05) -25px -25px;
+}

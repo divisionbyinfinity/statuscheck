@@ -1,0 +1,61 @@
+<html translate="no" lang="en">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+  <title id="title"></title>
+  <link rel="icon" type="image/x-icon" href="images/robot.svg">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/cosmo/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.css">
+  <link rel="stylesheet" href="default.css">
+  <title id="title"></title>
+</head>
+<body>
+<div class="desktop">
+<div class="heading">
+<div class="container">
+<div id="logo" class="logo-container"></div>
+<div class="title-container">
+	<div class="app_info">
+     	<!-- Read from config.json -->
+        <h1 id="pagetitle"></h1>
+        <h2 id="subtitle"></h2>
+	<h3 id="description"></h3>
+	</div>
+	<div class="helper_info">
+   	<table class="table guide">
+   	<tbody>
+      	<tr><td class="td-button"><p class="statblue">CONNECTING</p></td></tr>
+        <tr><td class="td-button"><p class="statgreen">CONNECTED</p></td></tr>
+        <tr><td class="td-button"><p class="statred">NO RESPONSE</p></td></tr>
+      	</tr>
+    	</tbody>
+  	</table>
+  	</div>
+  </div>
+<div class="filter-container">
+  <h4>Filter Devices</h4>
+  <form class="formSelector">
+    <select id="typeSelector" name="typeSelector">
+      <option value="" disabled selected class="hideme">Area</option>
+    </select>
+    <select id="locationSelector" name="locationSelector">
+      <option value="" disabled selected class="hideme">Department</option>
+    </select>
+    <button class="submit" type="submit"><span>Submit</span></button>
+  </form>
+</div>
+
+<div class="child-container-links">
+<p class="server"><a href="#" alt="Status Check" title="Status Check" id="adminControl"><img src="images/tools.svg">Status Check Settings</a></p>
+<p style="display: none" id="sign_in_title" class="server"><a id="sign_in_url" href="" target="_blank" alt="" title=""><img id="sign_in_icon" src=""></a></p>
+</div>
+<div class="child-container-links">
+<p style="display: none" id="endpoint_title" class="monitor"><a id="endpoint_url" href="" alt="" title="" target="_blank"><img id="endpoint_icon" src=""></a></p>
+<p style="display: none" id="monitor_title" class="monitor"><a id="monitor_url" href="" alt="" title=""><img id="monitor_icon" src=""></a></p>
+</div>
+<div class="child-container-links">
+<p style="display: none" id="help_title" class="dev"><a id="help_url" href="" alt="" title=""><img id="help_icon" src=""></a></p>
+<p style="display: none" id="dev_title" class="dev"><a id="dev_link" href="" alt="" title=""><img id="dev_icon" src=""></a> </p>
+</div>
+</div>
+</div>
