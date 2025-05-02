@@ -9,7 +9,7 @@
     "Actions": "Portal",
     "Alert Enable": true,
     "snoozed": false,
-    "snoozeTime": 0,
+    "snoozeTime": "2025-05-02T22:23:37.152Z",
     "Department": "Information Technology Services",
     "Portal": "portal.example.com"
   },

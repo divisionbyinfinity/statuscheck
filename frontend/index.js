@@ -579,28 +579,27 @@ const populateTable = () => {
             });
             status.appendChild(statusImage);
             adminFeatureCell.appendChild(status);
-            const snoozeCell = document.createElement('span');
-            const snoozeImage = document.createElement('img');
+
+            const snoozeCell = document.createElement('div');
+            snoozeCell.classList.add('snooze-wrapper');
             
-            // Update icon and tooltip
+            const snoozeImage = document.createElement('img');
+            snoozeImage.classList.add('snooze-icon');
+            
             const isSnoozed = server['snoozeTime'] && server['snoozeTime'] > 0;
             snoozeImage.src = isSnoozed ? './images/snoozeon.png' : './images/snooze.png';
             snoozeImage.title = isSnoozed
               ? `Expiring in ${server['snoozeTime']} min`
               : 'Not snoozed';
             
-            snoozeCell.appendChild(snoozeImage);
+            const snoozeLabel = document.createElement('span');
+            snoozeLabel.classList.add('snooze-label');
+            snoozeLabel.textContent = isSnoozed ? `${server['snoozeTime']}m` : '';
+            snoozeLabel.style.color = server['snoozeTime'] < 5 ? '#d9534f' : '#fff';
             
-            // Optional: add visible text label
-            if (isSnoozed) {
-                const snoozeLabel = document.createElement('span');
-                snoozeLabel.textContent = ` (${server['snoozeTime']} min)`;
-                snoozeLabel.style.fontSize = '0.8em';
-                snoozeLabel.style.marginLeft = '4px';
-                snoozeLabel.style.color = server['snoozeTime'] < 5 ? '#d9534f' : '#888'; // red if < 5
-                snoozeCell.appendChild(snoozeLabel);
-              }
-
+            snoozeCell.appendChild(snoozeImage);
+            snoozeCell.appendChild(snoozeLabel);
+           
             snoozeImage.addEventListener('click', async function (e) {
                 e.preventDefault();
                 const modalCont = document.getElementById('modalCont');
@@ -642,8 +641,9 @@ const populateTable = () => {
                         if (server['snoozeTime'] > 0) {
                             if (server['snoozeTime'] > 0) {
                                 snoozeImage.title = `Expiring in ${server['snoozeTime']} min`;
-                                snoozeLabel.textContent = ` (${server['snoozeTime']} min)`;
-                                snoozeLabel.style.color = server['snoozeTime'] < 5 ? '#d9534f' : '#888';
+                                snoozeLabel.textContent = `${server['snoozeTime']}m`;
+                                snoozeLabel.style.fontSize = '1.3em';
+                                snoozeLabel.style.color = server['snoozeTime'] < 5 ? '#ef5350' : '#fff';
                             } else {
                                 snoozeImage.title = 'Not snoozed';
                                 snoozeLabel.textContent = '';

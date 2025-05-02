@@ -5,7 +5,10 @@
     "role": "admin",
     "files": [
       "*"
-    ]
+    ],
+    "userId": "78ff2f2b-7c09-4b5a-ab0a-2cdbf1dba3b1",
+    "lastLogin": "2025-05-02T22:22:15.684Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3OGZmMmYyYi03YzA5LTRiNWEtYWIwYS0yY2RiZjFkYmEzYjEiLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwibGFzdExvZ2luIjoiMjAyNS0wNS0wMlQyMTo0MDoxMi40MzVaIiwiZmlsZXMiOlsiKiJdLCJpYXQiOjE3NDYyMjIwMTIsImV4cCI6MTc0NjMwODQxMn0.gjChwSoC7ptUmN9k7bqTVTy6eI0cXSG1ClNbYVLGeAI"
   },
   "devices": {
     "username": "devices",
