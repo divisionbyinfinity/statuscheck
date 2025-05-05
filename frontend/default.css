@@ -8,12 +8,12 @@ body {
    display: none;
 }
 
-@media (max-width:1800px) {
+@media (max-width:1200px) {
 .desktop {
    display: none;
 }}
 
-@media (max-width: 1800px) {
+@media (max-width: 1200px) {
 .mobile {
    display: block;
 
@@ -71,22 +71,23 @@ color: #fef9e7;
 	box-sizing: border-box;
 	width: 100%;
 	max-width: 100%;
-	padding: 0 2rem 0 2rem;
-	margin: 0 auto;
-	gap: 0 1rem;
+	padding: 0;
+	margin: 1rem auto 0 auto;
+	gap: 0 2rem;
 	border-radius: 4px;
 	background-color: #292929;
 }
 
 .logo-container {
+	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 1rem 0 0 0;
-	padding: .5rem;
-	max-width: 9%;
-	width: 9%;
-	height: 9%;
+	margin: 0;
+	padding: 0rem;
+	max-width: 8.5%;
+	width: 8.5%;
+	height: 8.5%;
 	box-sizing: border-box;
 
 	img {
@@ -104,7 +105,7 @@ color: #fef9e7;
 	justify-content: flex-start;
 	align-items: center;
 	box-sizing: border-box;
-	margin: 1rem 2rem 0 2rem;
+	margin: 0;
 	padding: 0 2rem;
 	max-width: 31%;
 	width: 31%;
@@ -112,7 +113,6 @@ color: #fef9e7;
 	max-height: 10rem;
 	background-color: #616a6b;
 	border-radius: 4px;
-        border: 1px solid gray;
 	gap: 0 2rem;
 
 > .app_info {
@@ -156,11 +156,9 @@ color: #fef9e7;
 	max-width: 15%;
 	padding: 0;
 	color: #fff;
-        border: 1px solid gray;
 	border-radius: 4px;
-	padding: 0 1rem 1rem 1rem;
-	margin-right: 2rem;
-        margin-top: 1rem;
+	padding: 0 1rem;
+	margin: 0;
 	background-color: #616a6b;
 	height: 10rem;
 	max-height: 10rem;
@@ -196,25 +194,27 @@ button {
 	justify-content: center!important;
 	align-items: center!important;
 	box-sizing: border-box!important;
-	width: 6rem!important;
+	width: 5rem!important;
         color: #000;
 	text-shadow: #fff 1px 1px 1px;
 	border: none!important;
-	margin-top: .35rem!important;
+	margin-top: .7rem!important;
 	font-weight: 400;
 	font-size: .8rem!important;
-	padding: .25rem .5rem!important;
+	padding: .25rem .25rem!important;
 	border-radius: 4px;
 }
 
 button:hover {
  	background-color: #00853e;
         color: #fff;
+	text-shadow: #000 1px 1px 1px;
 }
 
 button:active {
 	background-color: red;
         color: yellow;
+	text-shadow: #000 1px 1px 1px;
 }
 }
 
@@ -241,7 +241,7 @@ button:active {
 }
 
 .statgreen {
-	background-color: rgb(63, 182, 24);
+	background-color: rgb(30, 132, 73);
 	color: white;
 	text-shadow: #000 1px 1px 1px;
 	text-align: center;
@@ -260,6 +260,25 @@ button:active {
 	padding: 0.25rem;
 }
 
+.statltgray {
+	background-color: #90a4ae;
+	color: white;
+	text-shadow: #000 1px 1px 1px;
+	text-align: center;
+	width: 100%;
+	max-width: 100%;
+	padding: 0.25rem;
+}
+
+.statgray {
+	background-color: #455a64;
+	color: white;
+	text-shadow: #000 1px 1px 1px;
+	text-align: center;
+	width: 100%;
+	max-width: 100%;
+	padding: 0.25rem;
+}
 
 .guide {
   	width: 100%;
@@ -270,10 +289,10 @@ button:active {
 
 	p {
 		color: #fff;
-		font-size: 1rem;
+		font-size: .75rem!important;
 		text-shadow: #000 1px 1px 1px;
 		margin: 0;
-		padding: .5rem 0;
+		padding: .25rem 0;
 	}
 
 	th {
@@ -310,8 +329,8 @@ button:active {
 	width: 15%;
 	max-width: 15%;
 	padding: .25rem;
-	margin: 1rem auto 0 auto;
-	gap: 1.5rem .5rem!important;
+	margin: 0 auto;
+	gap: 0;
         height: 10rem;
         max-height: 10rem;
 
@@ -506,11 +525,20 @@ form footer #closeModal{
 	}
 }
 .adminFeatureth div {
-	display: flex;
-	justify-content: center;
-	gap:1rem;
-	align-items: center;
-	padding: 0px;
+	display: flex!important;						
+	justify-content: center!important;
+	gap: 0 2rem!important;
+	padding: .225rem .5rem!important;
+	align-items: center!important; /* Ensures vertical centering */
+	opacity: 1!important;
+
+	img {
+		padding-bottom: .25rem;
+	}
+
+	span {
+		vertical-align: middle!important;
+	}
 }
 
 .adminFeatureth > div > span {
@@ -518,11 +546,12 @@ form footer #closeModal{
 }
 
 .adminFeaturetd {
-	display: flex;
+	display: flex!important;
 	padding: .225rem .5rem!important;
-	justify-content: space-between;
+	justify-content: space-between!important;
 	align-items: center!important; /* Ensures vertical centering */
-	background-color: #292929;
+	background-color: #00695c!important;
+	opacity: 1!important;
 	/* border-right: 1px solid #fff;  */
 
 	span {
@@ -563,26 +592,66 @@ form footer #closeModal{
     max-width: 30rem ;  /* Keep the max-width */
 }
 
+#statsTable {
+	width: auto !important;
+	max-width: none !important;
+	table-layout: auto;   
+	margin: 0;            
+	margin-left: 0 !important;
+	margin-right: auto !important;
+	margin-bottom: 2rem;
+	border-collapse: collapse;
+	padding: .25rem .5rem;
+	border-radius: 4px;
+	background-color: #616a6b;
+	line-height: 1;
+
+
+td.stattype {
+	padding: 0 0!important;
+	font-weight: 400;
+	border-radius: 4px;
+	width: auto !important;
+	max-width: none !important;
+	margin: 0;
+	line-height: 1;
+	height: 1.5rem!important;
+	white-space: nowrap;  
+  }
+
+td.stattype:not(:first-child) {
+	padding-left: 1.5rem!important;
+}
+
+  td.statistic {
+	padding: 0 .5rem 0 1rem!important;
+    color: #f4d03f;
+	font-weight: 600;
+	border-radius: 4px;
+  }
+}
+
 .statuschecker-container {
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: flex-start;
 	align-items: center;
 	box-sizing: border-box;
 	width: 100%;
 	max-width: 100%;
-	padding: 0 3rem 0 3rem;
-	margin: 1.5rem 0 2rem 0;
+	padding: 0 2.25rem 0 2.25rem;
+	margin: .5rem 0 2rem 0;
 	border-radius: 4px;
 
 button {
-	background-color: #5d6d7e;
+	background-color: #f4d03f;
 	border: none;
-	color: #fff;
-	text-shadow: 1px 1px 1px #000;
+	color: #e53935;
 	font-size: 1rem!important;
 	border-radius: 4px;
 	padding: .25rem .5rem;
+	font-weight: 600;
+	text-shadow: none!important;
 }
 
 .ctr {
@@ -590,13 +659,13 @@ button {
 	background-color: #f4d03f;
 	border: none;
 	color: #000;
-	text-shadow: 1px 1px 1px #fff;
 	font-size: 1rem!important;
 	border-radius: 4px;
 	padding: .25rem .5rem;
-	width: 3rem;
-	max-width: 3rem;
 	text-decoration: none!important;
+	text-shadow: none!important;
+	width: 4rem;
+	font-weight: 600;
 }
 
 button:hover, .ctr:hover {
@@ -609,7 +678,7 @@ button:active, .ctr:active {
 	color: yellow;
 }
 
-.table th, .table td {
+.table td, .table th {
     padding: 0;
     line-height: normal;
     text-align: left;
@@ -617,6 +686,9 @@ button:active, .ctr:active {
     border-top: 1px solid #ddd;
 }
 
+.table th img {
+
+}
 
 table {
 	border-collapse: separate!important;
@@ -633,11 +705,39 @@ table th, table td, table tr, .table th, .table td, .table tr, thead {
 	margin:0;
 }
 
-#livetable {
-	box-shadow: #e0e0e0 0 0 2px 3px;
-	border-radius: 4px;
+#liveTable {
+box-shadow: #e0e0e0 0 0 2px 3px;
+border-radius: 4px;
+text-shadow: #000 1px 1px 1px;
 }
 
+#liveTable tr {
+	opacity: 0.2;
+}
+
+/* Base class for pinged rows to ensure full opacity */
+#liveTable tr.pinged {
+    opacity: 1!important; /* Override parent #liveTable opacity */
+}
+
+/* Specific classes for ping states */
+#liveTable tr.pinged-trying {
+    background-color: rgb(3, 117, 180); /* Blue for trying to connect */
+}
+
+#liveTable tr.pinged-success {
+    background-color: #1e8449; /* Green for success */
+}
+
+#liveTable tr.pinged-failure {
+    background-color: #ff0039; /* Red for failure */
+}
+
+/* Ensure <td> elements inherit the row's opacity and background */
+#liveTable tr.pinged td {
+    opacity: 1!important; /* Ensure cell content is fully opaque */
+    background-color: inherit; /* Match the row's background color */
+}
 
 .table td:has(button), thead tr th:first-child {
 	margin:  0 auto;
@@ -682,8 +782,11 @@ th:last-child {
 	margin-bottom: 0;
 }
 
-thead {
-	background-color: #616a6b;
+#liveTable thead > tr {
+	opacity: 1.0!important;
+	font-size: 1rem!important;
+	font-weight: 600!important;
+	background-color: #263238!important;
 }
 
 .sortable {
@@ -695,91 +798,92 @@ th[style="display: none;"] + th.sortable {
 }
 
 .bottombar {
-    	background-color: #616a6b!important; /* Light background color for the row */
-    	width: 100%!important;
-    	max-width: 100%!important;
-    	height: 1.5rem!important;
-    	border-radius: 0 0 4px 4px;
-
-> td {
-    	border-radius: 0 0 4px 4px;
-}
-}
+	opacity: 1.0!important;
+	font-size: 1rem!important;
+	font-weight: 600!important;
+	background-color: #263238!important;
+    width: 100%!important;
+    max-width: 100%!important;
+    height: 31.9965px!important;
+	border-radius: 0 0 4px 4px;
+	
+	> td {
+		opacity: 1.0!important;
+		font-size: 1rem!important;
+		font-weight: 600!important;
+		background-color: #263238!important;
+		width: 100%!important;
+		max-width: 100%!important;
+		height: 31.9965px!important;
+   		border-radius: 0 0 4px 4px;	
+}}
 }
 
 .support_info {
 display: flex;
-justify-content: flext-start;
-align-items: center;
-width: fit-sontent;
+justify-content: flex-start;
+align-items: center!important;
+width: fit-content;
 box-sizing: border-box;
-margin: 0 4rem 3rem 4rem;
-padding-top: .65rem;
-padding-left: 1rem;
-padding-right: 1rem;
-font-size: 1.05rem;
-line-height: 2;
+margin: 0 2.25rem 0 2.25rem;
+padding: 0 0 0 .5rem!important;
+font-size: 1rem;
 text-shadow: 1px 1px 1px #000;
 background-color: #616a6b;
-width: fit-content;
 border-radius: 4px;
-border: 1px solid gray;
+
 
 p {
-display: flex;
-justify-content: flext-start;
-align-items: center;
-width: fit-sontent;
-box-sizing: border-box;
-padding: 0;
+padding: 0!important;
+margin:0!important;
+
 }
-
-p:first-child {
-
+.intro_support {
+display: flex;
+justify-content: flex-start;
+align-items: center!important;
+width: fit-content;
+box-sizing: border-box;
+padding: 0!important;
+margin:0!important;
 }
 
 #contact {
-  background-color: #00853e;
+  background-color: #000;
   color: #fff;
-  border-radius: 4px;
-  font-weight: 600;
-  margin-right: 1rem;
+  border-radius: 0;
+  margin-right: 0;
   text-shadow: 1px 1px 1px #000;
-  padding: 0 .5rem;
-  border: 1px solid #fff;
+  padding: .25rem .5rem!important;
 }
 
 #contactemail {
   background-color: #fff;
   color: #000;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
-  border-right: 1px solid #fff;
-  border-left: 6px solid #00853e;
-  border-radius: 4px;
-  margin-right: 1rem;
+  border: 0px;
+  border-radius: 0px;
+  margin-right:0;
+padding: .25rem .5rem!important;
 
 a {
 color: #000;
 text-decoration: none;
-padding: .25rem .5rem;
+padding: 0!important;
 text-shadow: none;
+border: 0px;
 }
 }
-
 #contactphone {
-  background-color: yellow;
+  background-color: #fff;
   color: #000;
-  border-top: 1px solid yellow;
-  border-bottom: 1px solid yellow;
-  border-right: 1px solid yellow;
-  border-left: 6px solid #00853e;
-  border-radius: 4px;
+  border-left: 1px solid #000;
+  border-radius: 0 4px 4px 0;
   margin-right: 0;
+padding: .25rem .5rem!important;
 
 a {
 color: #000;
-padding: .25rem .5rem;
+padding: 0!important;
 text-decoration: none;
 text-shadow: none;
 }
@@ -798,4 +902,64 @@ a {
 color: #e74c3c;
 }
 }
+}
+
+.snooze-wrapper {
+	display: flex;
+	justify-content: space-between;  /* text at start, icon at end */
+	align-items: center;             /* vertically center both */
+	width: 5ch;                      /* your overall width control */
+	height: 24px;
+  }
+  
+  .snooze-icon {
+	height: 100%;    /* fill the wrapper’s height */
+	width: auto;     /* keep its intrinsic aspect */
+  }
+  
+  .snooze-label {
+	/* no absolute positioning needed any more */
+	position: static;
+	font-size: .85em!important;     /* or whatever you like */
+	font-weight: 400!important; 
+	line-height: 1; 
+	padding-left: .15rem;      /* default line-height is fine in flex */
+	white-space: nowrap;
+	pointer-events: none;
+  }
+
+#timer {
+	z-index: 1000;
+	position: relative;
+	display: flex;
+	justify-content: center; /* horizontal center */
+	align-items: center;     /* vertical center */
+}
+
+#timer {
+	position: absolute;
+	top: 53.75%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#timer p {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: rgb(255,255,255);
+    background-color: #f44336;
+	padding: .25rem .5rem;
+	border-radius: 4px;
+	line-height: 2rem;
+	opacity: .85;
+}
+
+.snoozed-row {
+	background-color: #90a4ae!important;
+	opacity: 1!important;
+}
+
+.alerts-disabled-row {
+	background-color: #455a64!important;
+	opacity: 1!important;
 }

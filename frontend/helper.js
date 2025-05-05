@@ -1,37 +1,40 @@
-export async function ping(BaseUrl,ip){
+export async function ping(BaseUrl, ip) {
     return fetch(`${BaseUrl}/ping?ip=${ip}`)
-    .then(response => response.json())
-    .then(data => {
-    return data
-    }).catch(error => error)
+        .then(response => response.json())
+        .then(data => {
+            return data
+        }).catch(error => error)
 }
-export async function login(BaseUrl,username,password,filename){
+
+export async function login(BaseUrl, username, password, filename) {
     return fetch(`${BaseUrl}/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username,password,filename }),
+        body: JSON.stringify({ username, password, filename }),
     })
-    .then(response => response.json())
-    .then(data => {
-        return data
-    })
-    .catch(error => error)
+        .then(response => response.json())
+        .then(data => {
+            return data
+        })
+        .catch(error => error)
 }
-export async function checkToken(BaseUrl,token){
-    return fetch(`${BaseUrl}/checktoken`,{
+
+export async function checkToken(BaseUrl, token) {
+    return fetch(`${BaseUrl}/checktoken`, {
         method: 'get',
         headers: {
             'Content-Type': 'application/json',
             'authorization': `Bearer ${token}`,
         },
     })
-    .then(response => response.json())
-    .then(data => {
-    return data
-    }).catch(error => error)
+        .then(response => response.json())
+        .then(data => {
+            return data
+        }).catch(error => error)
 }
+
 export async function fetchJSON(BaseUrl, fileName) {
     try {
         const response = await fetch(`${BaseUrl}/devices/${fileName}`);
@@ -42,57 +45,55 @@ export async function fetchJSON(BaseUrl, fileName) {
     }
 }
 
-
-export async function MailAlertEnable(BaseUrl,name,enableMailAlert,fileName,token){
+export async function MailAlertEnable(BaseUrl, name, enableMailAlert, fileName, token) {
     return fetch(`${BaseUrl}/devices/device/${fileName}?deviceName=${name}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
             'authorization': `Bearer ${token}`,
-
         },
         body: JSON.stringify({ enableMailAlert }),
     })
-    .then(response => response.json())
-    .then(data => {
-        return data
-    })
-    .catch(error => error)
+        .then(response => response.json())
+        .then(data => {
+            return data
+        })
+        .catch(error => error)
 }
-export async function UpdateSnooze(BaseUrl,name,days,fileName,token){
+
+export async function UpdateSnooze(BaseUrl, name, minutes, fileName, token) {
     return fetch(`${BaseUrl}/devices/device/snooze/${fileName}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify({ name,days }),
+        body: JSON.stringify({ name, minutes }),
     })
-    .then(response => response.json())
-    .then(data => {
-        return data
-    })
-    .catch(error => error)
+        .then(response => response.json())
+        .then(data => {
+            return data
+        })
+        .catch(error => error)
 }
 
-export async function updateDevice(BaseUrl,body,fileName,name,token){
+export async function updateDevice(BaseUrl, body, fileName, name, token) {
     return fetch(`${BaseUrl}/devices/device/${fileName}?deviceName=${name}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'authorization': `Bearer ${token}`,
-
         },
         body: JSON.stringify(body),
     })
-    .then(response => response.json())
-    .then(data => {
-        return data
-    })
-    .catch(error => error)
+        .then(response => response.json())
+        .then(data => {
+            return data
+        })
+        .catch(error => error)
 }
 
-export async function addDevice(BaseUrl,body,fileName,token){
+export async function addDevice(BaseUrl, body, fileName, token) {
     return fetch(`${BaseUrl}/devices/device/add/${fileName}`, {
         method: 'POST',
         headers: {
@@ -101,37 +102,35 @@ export async function addDevice(BaseUrl,body,fileName,token){
         },
         body: JSON.stringify(body),
     })
-    .then(response => response.json())
-    .then(data => {
-        return data
-    })
-    .catch(error => error)
+        .then(response => response.json())
+        .then(data => {
+            return data
+        })
+        .catch(error => error)
 }
 
-export async function deleteDevice(BaseUrl,fileName,name,token){
+export async function deleteDevice(BaseUrl, fileName, name, token) {
     return fetch(`${BaseUrl}/devices/device/${fileName}?deviceName=${name}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
             'authorization': `Bearer ${token}`,
         }
-
     })
-    .then(response => response.json())
-    .then(data => {
-        return data
-    })
-    .catch(error => error)
+        .then(response => response.json())
+        .then(data => {
+            return data
+        })
+        .catch(error => error)
 }
 
 export function createSpinner() {
     const spinner = document.createElement('span');
-    spinner.classList.add('spinner'); // Add class for styling the spinner
-    spinner.textContent = '⏳'; // Unicode hourglass character
+    spinner.classList.add('spinner');
+    spinner.textContent = '⏳';
     return spinner;
 }
 
-// Helper to create a button
 export function createButton(id, text, displayStyle = 'inline-block') {
     const button = document.createElement('button');
     button.id = id;

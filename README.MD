@@ -40,11 +40,11 @@ Status Check is a javascript web application that can be used to monitor the sta
 ### Dashboard
 The main page of the app is a **dashboard**:
 
-![Statuscheck Dashboard](readme/dashboard.png)
+![Statuscheck Dashboard](readme/dashboard-statuscheck.png)
 
 Upon loading the dashboard all devices are checked to determine their current status: green indicates the device is responding to the ping, red indicates the device is not respsonding to the ping, and blue indicates the app is waiting for a response (if the device is up it will change to green, but after a brief timeout period it will change to red if no response is received). 
 
-The app checks every five minutes and refreshes the dashboard.  You can manually refresh a device by using the **ping** button. If you enable **mailhost** you can choose to have the app send an email when a device is not responding. If you need to connect to a device for management you can use the button under the **Connect** column to do so. 
+The app checks every five minutes and refreshes the dashboard.  You can manually refresh a device by using the **ping** button. If you enable **mailhost** you can choose to have the app send an email when a device is not responding. If you need to connect to a device for management you can use the button under the **Connect** column to do so. There is a countdown timer placed over the logo in the top left of the dashboard.
 
 You can filter the devices by **Device Type** and **Location** by default. 
 
@@ -56,7 +56,9 @@ The admin features allow you to:
 - Edit the properties of a device.
 - Disable or snooze mail alerts.
 
-![Statuscheck Admin](readme/admin.png)
+![Statuscheck Admin](readme/admin-statuscheck.png)
+   
+Above the device table is another small table that shows the statistics: number of devices, devices not responding, devices snoozed, and devices with email alerts disabled.
 
 **The application is easily configurable through a handful of json files: See the section on [JSON File Configuration](#json-configuration) for details.**
 
@@ -70,7 +72,7 @@ You can create multiple multiple configuration json files and use the **config**
 If in your frontend directory you have **alternative_config.json**, to use it instead of the default **config.json** you would use the URL: 
 
 ```html
-https://<your url>/?config=alternative_config
+https://<your url>/?config=alt_config
 ```
 
 ### devices.json ## 
@@ -127,6 +129,7 @@ The details on setting up this file, including the links is given below: [setup 
    "description": "User-facing universal monitoring and management tool.",
    "api": "/api",
    "logo":"logo.svg",
+   "interval": 5,
    "contact": "Support Unit Name",
    "contact-email": "support_unit@example.com",
    "contact-phone": "9405550000",
@@ -139,9 +142,9 @@ The details on setting up this file, including the links is given below: [setup 
    "endpoint_title": "Pi Connect",
    "endpoint_icon": "raspberry-pi.svg",
    "endpoint_url": "https://connect.raspberrypi.com/",
-   "help_title": "Help Documentation",
-   "help_icon": "help.svg",
-   "help_url": "help/",
+   "help_title": "GitHub Repository",
+   "help_icon": "github_repo.svg",
+   "help_url": "https://github.com/divisionbyinfinity/statuscheck",
    "dev_title": "",
    "dev_icon": "",
    "dev_url": "",
@@ -149,6 +152,7 @@ The details on setting up this file, including the links is given below: [setup 
    "secondFilter": "Location",
       "fileName":"devices.json",
       "showAdmin":false,
+      "showAlertStatus":false
       "showAlertStatus":false
 }
 ```
@@ -161,6 +165,9 @@ Replace the examples with some devices you want to monitor. The details on setti
 ```bash
 docker compose up --build -d 
 ```
+
+There is a script int the frontend folder **clean.sh** that can bel used to bring down the app and completely remove the conatiners, etc...  Good to just blow it out and rebuild from scratch with the command above.
+
 ### Open up the app in your web browser
 The app will be running on port **8080**.  If you are just running it on your local machine:
 ```
@@ -369,8 +376,9 @@ Copy the contents below into your file, *editing where appropriate*:
    "pageTitle": "StatusCheck",
    "subTitle": "Device Collection",
    "description": "User-facing universal monitoring and management tool.",
-   "api": "http://example.com/api",
+   "api": "/api",
    "logo":"logo.svg",
+   "interval": 5,
    "contact": "Support Unit Name",
    "contact-email": "support_unit@example.com",
    "contact-phone": "9405550000",
@@ -383,9 +391,9 @@ Copy the contents below into your file, *editing where appropriate*:
    "endpoint_title": "Pi Connect",
    "endpoint_icon": "raspberry-pi.svg",
    "endpoint_url": "https://connect.raspberrypi.com/",
-   "help_title": "Help Documentation",
-   "help_icon": "help.svg",
-   "help_url": "help/",
+   "help_title": "GitHub Repository",
+   "help_icon": "github_repo.svg",
+   "help_url": "https://github.com/divisionbyinfinity/statuscheck",
    "dev_title": "",
    "dev_icon": "",
    "dev_url": "",
@@ -435,27 +443,28 @@ In the top right of the dashboard there is 2x3 grid of icons.  In the first cell
     └────────────┴────────────┴──────────┘
 
 ```json
-   {
+{
    "pageTitle": "StatusCheck",
    "subTitle": "Device Collection",
    "description": "User-facing universal monitoring and management tool.",
-   "api":"http://localhost:3000/api",
+   "api": "/api",
    "logo":"logo.svg",
-   "contact": "IT Department",
-   "contact-email": "it@organization.com",
+   "interval": 5,
+   "contact": "Support Unit Name",
+   "contact-email": "support_unit@example.com",
    "contact-phone": "9405550000",
-   "help_title": "Help Documentation",
-   "help_icon": "help.svg",
-   "help_url": "help",
-   "endpoint_title": "Pi Connect",
-   "endpoint_icon": "raspberry-pi.svg",
-   "endpoint_url": "https://connect.raspberrypi.com/",
    "sign_in_title": "",
    "sign_in_icon": "",
    "sign_in_url": "",
    "monitor_title": "",
    "monitor_icon": "",
    "monitor_url": "",
+   "endpoint_title": "Pi Connect",
+   "endpoint_icon": "raspberry-pi.svg",
+   "endpoint_url": "https://connect.raspberrypi.com/",
+   "help_title": "GitHub Repository",
+   "help_icon": "github_repo.svg",
+   "help_url": "https://github.com/divisionbyinfinity/statuscheck",
    "dev_title": "",
    "dev_icon": "",
    "dev_url": "",
@@ -464,7 +473,7 @@ In the top right of the dashboard there is 2x3 grid of icons.  In the first cell
       "fileName":"devices.json",
       "showAdmin":false,
       "showAlertStatus":false
-   }
+}
 ```
 #### deviceList.json
 
@@ -484,22 +493,23 @@ Most values in the json are just labels but **IP Address** needs to be a valid F
 (**devices_monitor.json** is another device collection added as an example)
  ```json
 {
-  "Google": {
-    "DNS Name": "Google",
-    "IP Address": "www.google.com",
+  "Wintermute": {
+    "DNS Name": "ssh.wintermute.org",
+    "IP Address": "10.150.32.40",
     "Location": "Cloud",
     "Device Type": "Service",
-    "Description": "Web",
-    "Owner": "Alphabet Inc.",
-    "Department": "Google Inc.",
-    "Actions": "HTTP",
+    "Description": "Example Test Device",
+    "Owner": "Division by Infinity",
+    "Actions": "SSH",
     "Alert Enable": true,
     "snoozed": false,
     "snoozeTime": 0,
-    "Portal": "portal.example.com"
+    "Department": "Information Technology Services",
+    "Portal": null,
+    "snoozeStartTime": null
   },
   "Microsoft": {
-    "DNS Name": "Microsoft",
+    "DNS Name": "www.microsoft.com",
     "IP Address": "www.microsoft.com",
     "Location": "Cloud",
     "Device Type": "Server",
@@ -510,21 +520,9 @@ Most values in the json are just labels but **IP Address** needs to be a valid F
     "Alert Enable": true,
     "snoozed": false,
     "snoozeTime": 0,
-    "Portal": "portal.example.com"
-  },
-  "starterpi": {
-    "DNS Name": "starterpi",
-    "IP Address": "starterpi.wintermute.org",
-    "Location": "Office",
-    "Device Type": "Raspberry Pi 5",
-    "Description": "Desktop",
-    "Owner": "User Name",
-    "Department": "Innovation Technologies",
-    "Actions": "SSH",
-    "Alert Enable": true,
-    "snoozed": false,
-    "snoozeTime": 0,
-    "Portal": "portal.example.com"
+    "Department": "Information Technology Services",
+    "Portal": null,
+    "snoozeStartTime": null
   }
 }
 ```

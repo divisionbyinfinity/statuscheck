@@ -1,7 +1,7 @@
 <html translate="no" lang="en">
 <head>
   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-  <title id="title"></title>
+  <title>Statuscheck</title>
   <link rel="icon" type="image/x-icon" href="images/robot.svg">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/cosmo/bootstrap.min.css">
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
@@ -13,7 +13,7 @@
 <div class="desktop">
 <div class="heading">
 <div class="container">
-<div id="logo" class="logo-container"></div>
+<div id="logo" class="logo-container"><span id="timer" class="timer"><p></p></span></div>
 <div class="title-container">
 	<div class="app_info">
      	<!-- Read from config.json -->
@@ -27,6 +27,8 @@
       	<tr><td class="td-button"><p class="statblue">CONNECTING</p></td></tr>
         <tr><td class="td-button"><p class="statgreen">CONNECTED</p></td></tr>
         <tr><td class="td-button"><p class="statred">NO RESPONSE</p></td></tr>
+        <tr><td class="td-button"><p class="statltgray">SNOOZED</p></td></tr>
+        <tr><td class="td-button"><p class="statgray">ALERTS DISABLED</p></td></tr>
       	</tr>
     	</tbody>
   	</table>
