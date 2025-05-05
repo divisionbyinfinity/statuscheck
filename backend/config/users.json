@@ -6,33 +6,17 @@
     "files": [
       "*"
     ],
-    "userId": "78ff2f2b-7c09-4b5a-ab0a-2cdbf1dba3b1",
-    "lastLogin": "2025-05-05T15:07:44.313Z",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3OGZmMmYyYi03YzA5LTRiNWEtYWIwYS0yY2RiZjFkYmEzYjEiLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwibGFzdExvZ2luIjoiMjAyNS0wNS0wNVQxMzo0MjozNy41NDJaIiwiZmlsZXMiOlsiKiJdLCJpYXQiOjE3NDY0NTI1NTcsImV4cCI6MTc0NjUzODk1N30.7-TCxF0NH-v9dPp9iekO0QlvHnAsZSOjLVxN8HMUa-o"
+    "userId": "c58b1722-2c4d-429e-9793-5d3bc6abbb9f",
+    "lastLogin": "2025-05-05T19:31:06.729Z"
   },
-  "devices": {
-    "username": "devices",
-    "password": "devices",
+  "altadmin": {
+    "username": "altadmin",
+    "password": "adminalt",
     "role": "admin",
     "files": [
-      "devices.json"
-    ]
-  },
-  "monitor": {
-    "username": "monitor",
-    "password": "monitor",
-    "role": "admin",
-    "files": [
-      "devices_monitor.json"
-    ]
-  },
-  "multi": {
-    "username": "multi",
-    "password": "multi",
-    "role": "admin",
-    "files": [
-      "devices.json",
-      "devices_monitor.json"
-    ]
+      "devices_alt.json"
+    ],
+    "userId": "a22f39e0-5805-4df0-a5fc-f7b2f7f9b784",
+    "lastLogin": "2025-05-05T19:38:47.845Z"
   }
 }

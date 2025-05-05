@@ -1,6 +1,6 @@
 {
    "pageTitle": "StatusCheck",
-   "subTitle": "Alt Configuration Example",
+   "subTitle": "Alt Config Demo Device Collection",
    "description": "User-facing universal monitoring and management tool.",
    "api": "/api",
    "logo":"logo.svg",
@@ -25,7 +25,7 @@
    "dev_url": "",
    "firstFilter": "Device Type",
    "secondFilter": "Location",
-      "fileName":"devices_monitor.json",
-      "showAdmin":false,
-      "showAlertStatus":false
+   "fileName":"devices_alt.json",
+   "showAdmin":false,
+   "showAlertStatus":false
 }

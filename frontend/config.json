@@ -25,7 +25,7 @@
    "dev_url": "",
    "firstFilter": "Device Type",
    "secondFilter": "Location",
-      "fileName":"devices.json",
-      "showAdmin":false,
-      "showAlertStatus":false
+   "fileName":"devices.json",
+   "showAdmin":false,
+   "showAlertStatus":false
 }

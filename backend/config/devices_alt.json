@@ -1,0 +1,32 @@
+{
+  "Microsoft": {
+    "DNS Name": "microsoft.com",
+    "IP Address": "www.microsoft.com",
+    "Location": "Cloud",
+    "Device Type": "Website",
+    "Description": "Corporate Homepage",
+    "Owner": "Microsoft Incorporated",
+    "Actions": "Portal",
+    "Alert Enable": true,
+    "snoozed": false,
+    "snoozeTime": 0,
+    "Department": "Information Technology",
+    "Portal": "microsoft.com",
+    "snoozeStartTime": null
+  },
+  "Google": {
+    "DNS Name": "google.com",
+    "IP Address": "www.google.com",
+    "Location": "On-Premise",
+    "Device Type": "Website",
+    "Description": "Corporate Homepage",
+    "Owner": "Alphabet Incorporated",
+    "Actions": "Portal",
+    "Alert Enable": true,
+    "snoozed": false,
+    "snoozeTime": 0,
+    "Department": "Information Technology Services",
+    "Portal": "google.com",
+    "snoozeStartTime": null
+  }
+}

@@ -4,17 +4,18 @@ import { ping, fetchJSON, MailAlertEnable, UpdateSnooze, login, checkToken, upda
 const CONFIG_FILE = 'config.json';  // default
 let configFile = CONFIG_FILE;       // variable to hold the active config file
 
-// Ping interval configuration (5 minutes in milliseconds)
-const PING_INTERVAL = 5 * 60 * 1000;
-// Snooze label update interval (30 seconds in milliseconds)
-const SNOOZE_UPDATE_INTERVAL = 30 * 1000;
-
 // Check if URL contains a "config" query parameter, e.g., ?config=devices_monitor
 const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.has('config')) {
     // Use the parameter's value and append ".json"
     configFile = urlParams.get('config') + '.json';
 }
+
+// Ping interval configuration (5 minutes in milliseconds)
+const PING_INTERVAL = 5 * 60 * 1000;
+// Snooze label update interval (30 seconds in milliseconds)
+const SNOOZE_UPDATE_INTERVAL = 30 * 1000;
+
 
 // Initialize the FILTER_KEYS object.
 const FILTER_KEYS = {};
@@ -112,6 +113,7 @@ const adminLoginForm = async (e) => {
     e.preventDefault();
     const password = document.getElementById('password').value;
     const username = document.getElementById('username').value;
+    console.log('Login attempt:', { username, password, fileName });
     document.getElementById("modalSubmit").style.display = 'none';
     document.getElementById('modalSpinner').style.display = 'block';
 
