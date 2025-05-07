@@ -1,17 +1,17 @@
 {
   "admin": {
     "username": "admin",
-    "password": "adminadmin",
+    "password": "$2b$10$jb76X5pxtHb.RBKU7OL6JuR2haLqQaQgzA4AB/o9AIfy853tbHyQy",
     "role": "admin",
     "files": [
       "*"
     ],
     "userId": "c58b1722-2c4d-429e-9793-5d3bc6abbb9f",
-    "lastLogin": "2025-05-05T19:31:06.729Z"
+    "lastLogin": "2025-05-07T14:25:29.362Z"
   },
   "altadmin": {
     "username": "altadmin",
-    "password": "adminalt",
+    "password": "$2b$10$P0uRILrg7mi5BO1zWX/M5eMbvEyDKjk5t0ykvf9IwORK.rrUCwjK.",
     "role": "admin",
     "files": [
       "devices_alt.json"

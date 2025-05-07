@@ -68,11 +68,11 @@
     "Owner": "Division by Infinity",
     "Actions": "SFTP",
     "Alert Enable": true,
-    "snoozed": true,
-    "snoozeTime": 50,
+    "snoozed": false,
+    "snoozeTime": 0,
     "Department": "Information Technology Services",
     "Portal": "portal.example.com",
-    "snoozeStartTime": 1746457668531
+    "snoozeStartTime": null
   },
   "ssh.wintermute.org": {
     "DNS Name": "ssh.wintermute.org",

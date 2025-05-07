@@ -57,9 +57,9 @@ font-size: .85rem;
 font-weight: 400;
 text-align: left;
 text-shadow: 1px 1px 1px #000;
-margin: .25rem 0 .75rem 0;
+margin: 0;
 padding: 0;
-line-height: 1;
+line-height: 1.5;
 color: #fef9e7;
 }
 
@@ -106,14 +106,14 @@ color: #fef9e7;
 	align-items: center;
 	box-sizing: border-box;
 	margin: 0;
-	padding: 0 2rem;
+	padding: 0 1rem;
 	max-width: 31%;
 	width: 31%;
 	height: 10rem;
 	max-height: 10rem;
 	background-color: #616a6b;
 	border-radius: 4px;
-	gap: 0 2rem;
+	gap: 0 1rem;
 
 > .app_info {
 	display: flex;
@@ -123,8 +123,6 @@ color: #fef9e7;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	max-width: 60%;
-	width: 60%;
 	height: 10rem;
 	max-height: 10rem;
 	background-color: #616a6b;
@@ -330,7 +328,7 @@ button:active {
 	max-width: 15%;
 	padding: .25rem;
 	margin: 0 auto;
-	gap: 0;
+	gap: .5rem 0;
         height: 10rem;
         max-height: 10rem;
 
@@ -559,8 +557,8 @@ form footer #closeModal{
 	}
 	
 	img{
-		width: 1.52rem;
-		height: 1.52rem;
+		width: 1.27rem;
+		height: 1.27rem;
 	}
 
 }

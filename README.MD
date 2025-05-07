@@ -8,6 +8,14 @@
 
 Status Check is a javascript web application that can be used to monitor the status and manage devices on your network such as IoT devices (Raspberry Pi), desktops, printers, audio-visual components, and servers.  Any device that will respond to a ping (ICMP echo request) can be monitored, any device that can be connected with via **ssh**, **https**, **vnc**, **rdp**, or a **portal** can be managed by just adding a link and/or you can add a link to your endpoint management at the top of the page. The default lists of devices that is included in the repo includes a couple public websites, so you can monitor just about *anything*. Throw it on a server or run it on your local machine.  There are other ways for an IT professional to monitor devices in an enterprise environment, like [Zabbix](https://github.com/zabbix/zabbix), this is intended to be an easy to use dashboard with the essential features that you can share with end-users and front-line staff. We find it useful troubleshooting equipment deployments.
 
+**Added password hashing:**
+Edit **/config/users.json** and update the passwords for your accounts *using plaintext*.  Then from the **backend** folder:
+```js
+node hash_passwords.js
+```
+Check that the users.json now has your passwords hashed.  
+
+
 - [Introduction](#introduction)
   - [Dashboard](#dashboard)
   - [config.json](#configjson)
@@ -158,6 +166,12 @@ The details on setting up this file, including the links is given below: [setup 
 ```
 ### Configure the **users.json**
 At least change the passwords on the admin accounts. The details on setting up this file is given below: [users.json](#usersjson-1).
+
+Edit **/config/users.json** and update the passwords for your accounts *using plaintext*.  Then from the **backend** folder:
+```js
+node hash_passwords.js
+```
+Check that the users.json now has your passwords hashed.  
 
 ### Add your devices to the **devices.json**
 Replace the examples with some devices you want to monitor. The details on setting up this file is given below: [devices.json](#devicesjson-1).
@@ -573,6 +587,13 @@ A user may be granted access to multiple device collections without being a **gl
   }
 }
 ```
+
+**Hash the passwords:**
+You can add your passwords *using plaintext*.  Just run the hashscript from the **backend** folder afterwards:
+```js
+node hash_passwords.js
+```
+
 ### Configure Mailhost ##
 In order for the email alerts to be enabled you must provide your mailhost information. To do so, edit the first three lines in the **.env** located in **backend** folder.
 ## NOTES ##
