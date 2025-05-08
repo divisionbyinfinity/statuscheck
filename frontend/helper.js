@@ -62,19 +62,32 @@ export async function MailAlertEnable(BaseUrl, name, enableMailAlert, fileName, 
 }
 
 export async function UpdateSnooze(BaseUrl, name, minutes, fileName, token) {
+    const payload = {
+        name: name,
+        minutes: minutes
+    };
+    console.log('UpdateSnooze request:', {
+        url: `${BaseUrl}/devices/device/snooze/${fileName}`,
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': `Bearer ${token.substring(0, 10)}...`
+        },
+        body: payload
+    });
     return fetch(`${BaseUrl}/devices/device/snooze/${fileName}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'authorization': `Bearer ${token}`,
         },
-        body: JSON.stringify({ name, minutes }),
+        body: JSON.stringify(payload),
     })
-        .then(response => response.json())
-        .then(data => {
-            return data
-        })
-        .catch(error => error)
+    .then(response => response.json())
+    .then(data => {
+        return data
+    })
+    .catch(error => error)
 }
 
 export async function updateDevice(BaseUrl, body, fileName, name, token) {
@@ -86,11 +99,11 @@ export async function updateDevice(BaseUrl, body, fileName, name, token) {
         },
         body: JSON.stringify(body),
     })
-        .then(response => response.json())
-        .then(data => {
-            return data
-        })
-        .catch(error => error)
+    .then(response => response.json())
+    .then(data => {
+        return data
+    })
+    .catch(error => error)
 }
 
 export async function addDevice(BaseUrl, body, fileName, token) {
@@ -104,7 +117,7 @@ export async function addDevice(BaseUrl, body, fileName, token) {
     })
         .then(response => response.json())
         .then(data => {
-            return data
+        return data
         })
         .catch(error => error)
 }

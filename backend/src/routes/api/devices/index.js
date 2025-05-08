@@ -12,19 +12,15 @@ router.get('/:fileName', async (req, res) => {
       if (!fs.existsSync(filePath)) {
         return res.status(404).json({ success: false, error: `File : "${fileName}" not found`, files: files });
       }
-      // Read the file
       let { data: devices, error } = readJsonFile(filePath);
-      // Sort the keys
       devices = Object.keys(devices).sort().reduce((obj, key) => {
         obj[key] = devices[key];
         return obj;
       }, {});
-      // Create a copy of the devices for the response
       const filteredServers = JSON.parse(JSON.stringify(devices));
 
       Object.keys(filteredServers).forEach((server) => {
         const device = filteredServers[server];
-        // Ensure snoozeTime is a number; reset if invalid
         if (isNaN(device['snoozeTime']) || device['snoozeTime'] < 0) {
           device['snoozeTime'] = 0;
           device['snoozed'] = false;
@@ -37,7 +33,6 @@ router.get('/:fileName', async (req, res) => {
         }
       });
 
-      // Save updated devices object to the file
       if (!devices) {
         return res.status(404).json({ success: false, error: `File : "${fileName}" not found` });
       }
@@ -45,7 +40,6 @@ router.get('/:fileName', async (req, res) => {
         if (err) {
           return res.status(500).json({ success: false, error: 'Error writing to devices file' });
         }
-        // Return filtered servers to the frontend
         return res.status(200).json({
           success: true,
           message: 'Fetched Devices successfully',
@@ -62,7 +56,6 @@ router.put('/device/:fileName', checkAuthorazation, async (req, res) => {
     const deviceName = req.query.deviceName;
     const { fileName } = req.params;
     const user = req.user;
-    // Check if the filename user has access to
     let filepermitted = checkFilePermitted(user.files, fileName);
     if (!filepermitted) {
       return res.status(401).json({ success: false, error: `User does not have permission to access this file ${fileName}` });
@@ -99,7 +92,6 @@ router.post("/device/snooze/:fileName", checkAuthorazation, async (req, res) => 
   const { name, minutes } = req.body;
   const user = req.user;
 
-  // Check user permission for the file
   let filepermitted = checkFilePermitted(user.files, fileName);
   if (!filepermitted) {
     return res.status(401).json({
@@ -122,7 +114,7 @@ router.post("/device/snooze/:fileName", checkAuthorazation, async (req, res) => 
     });
   }
 
-  if (minutes > 4320) { // 3 days max
+  if (minutes > 4320) {
     return res.status(400).json({
       success: false,
       message: 'Snooze time must be less than or equal to 4320 minutes (3 days)',
@@ -138,28 +130,16 @@ router.post("/device/snooze/:fileName", checkAuthorazation, async (req, res) => 
     });
   }
 
-  if (!name) {
-    return res.status(400).json({
-      success: false,
-      message: "Missing device name",
-    });
-  }
-
-  // Find device key by matching DNS Name
-  const matchingKey = Object.keys(devices).find(
-    key => devices[key]['DNS Name']?.toLowerCase() === name.toLowerCase()
-  );
-
-  if (!matchingKey) {
+  if (!name || !(name in devices)) {
     return res.status(400).json({
       success: false,
       message: `Device '${name}' not found`,
     });
   }
 
-  devices[matchingKey].snoozeTime = parseInt(minutes, 10);
-  devices[matchingKey].snoozed = minutes > 0;
-  devices[matchingKey].snoozeStartTime = minutes > 0 ? Date.now() : null;
+  devices[name].snoozeTime = parseInt(minutes, 10);
+  devices[name].snoozed = minutes > 0;
+  devices[name].snoozeStartTime = minutes > 0 ? Date.now() : null;
 
   return fs.writeFile(filePath, JSON.stringify(devices, null, 2), 'utf8', (err) => {
     if (err) {
@@ -188,12 +168,10 @@ router.post('/device/:fileName', checkAuthorazation, async (req, res) => {
     const filePath = `./config/${fileName}`;
     const body = req.body;
     const user = req.user;
-    // Check if the filename user has access to
     let filepermitted = checkFilePermitted(user.files, fileName);
     if (!filepermitted) {
       return res.status(401).json({ success: false, error: `User does not have permission to access this file ${fileName}` });
     }
-    // Check if device name exists in devices
     let { data: devices, error } = readJsonFile(filePath);
     if (!devices) {
       return res.status(404).json({ success: false, error: `File : "${fileName}" not found` });
@@ -202,11 +180,6 @@ router.post('/device/:fileName', checkAuthorazation, async (req, res) => {
     if (!deviceName || !existingDevice) {
       return res.status(400).json({ success: false, message: 'Device not found' });
     }
-    // Update device
-    if (deviceName !== body['DNS Name'] && body['DNS Name'] in devices) {
-      return res.status(400).json({ success: false, message: `${device.name} already exists` });
-    }
-    // Check if department, location, IPAddress, Device Type are not empty
     if (!body['Department'] || !body['Location'] || !body['IP Address'] || !body['Device Type']) {
       return res.status(400).json({ success: false, message: 'Department, Location, IP Address, Device Type are required' });
     }
@@ -218,7 +191,6 @@ router.post('/device/:fileName', checkAuthorazation, async (req, res) => {
     delete devices[deviceName];
     const newdeviceName = body['DNS Name'];
     devices[newdeviceName] = newDevice;
-    // Sort the keys
     devices = Object.keys(devices).sort().reduce((obj, key) => {
       obj[key] = devices[key];
       return obj;
@@ -245,7 +217,6 @@ router.post('/device/add/:fileName', checkAuthorazation, async (req, res) => {
     const body = req.body;
     const deviceName = body['DNS Name'];
     const user = req.user;
-    // Check if the filename user has access to
     let filepermitted = checkFilePermitted(user.files, fileName);
     if (!filepermitted) {
       return res.status(401).json({ success: false, error: `User does not have permission to access this file ${fileName}` });
@@ -254,7 +225,14 @@ router.post('/device/add/:fileName', checkAuthorazation, async (req, res) => {
       return res.status(400).json({ success: false, message: 'DNS Name, Department, Location, IP Address, Device Type are required' });
     }
 
-    // Check if IP address is valid
+    const keyPattern = /^[a-zA-Z0-9-_]{3,}$/;
+    if (!keyPattern.test(deviceName)) {
+      return res.status(400).json({
+        success: false,
+        message: 'DNS Name must be at least 3 characters and contain only letters, numbers, hyphens, or underscores'
+      });
+    }
+
     const ipPattern = new RegExp('^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$');
     if (!ipPattern.test(body['IP Address'])) {
       return res.status(400).json({ success: false, message: 'Invalid IP Address' });
@@ -264,13 +242,10 @@ router.post('/device/add/:fileName', checkAuthorazation, async (req, res) => {
     if (!devices) {
       return res.status(404).json({ success: false, error: `File : "${fileName}" not found` });
     }
-    if (!deviceName || deviceName in devices) {
-      return res.status(400).json({ success: false, message: 'Invalid device name' });
+    if (deviceName in devices) {
+      return res.status(400).json({ success: false, message: 'Device name already exists' });
     }
-    // Check if device name is at least 3 characters
-    if (deviceName.length < 3) {
-      return res.status(400).json({ success: false, message: 'Device name must be at least 3 characters' });
-    }
+
     const newDevice = {};
     newDevice['DNS Name'] = body['DNS Name'];
     newDevice['Department'] = body['Department'];
@@ -306,7 +281,6 @@ router.delete('/device/:fileName', checkAuthorazation, async (req, res) => {
     const deviceName = req.query.deviceName;
     const filePath = `./config/${fileName}`;
     const user = req.user;
-    // Check if the filename user has access to
     let filepermitted = checkFilePermitted(user.files, fileName);
     if (!filepermitted) {
       return res.status(401).json({ success: false, error: `User does not have permission to access this file ${fileName}` });
@@ -334,4 +308,4 @@ router.delete('/device/:fileName', checkAuthorazation, async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = router; 0

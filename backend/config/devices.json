@@ -1,19 +1,4 @@
 {
-  "failure.wintermute.org": {
-    "DNS Name": "failure.wintermute.org",
-    "IP Address": "111.111.111.111",
-    "Location": "Cloud",
-    "Device Type": "Server",
-    "Description": "Example Test Device",
-    "Owner": "Division by Infinity",
-    "Actions": "Portal",
-    "Alert Enable": false,
-    "snoozed": false,
-    "snoozeTime": 0,
-    "Department": "Information Technology Services",
-    "Portal": "portal.example.com",
-    "snoozeStartTime": null
-  },
   "https.wintermute.org": {
     "DNS Name": "https.wintermute.org",
     "IP Address": "10.150.32.40",
@@ -26,7 +11,6 @@
     "snoozed": false,
     "snoozeTime": 0,
     "Department": "Information Technology Services",
-    "Portal": "portal.example.com",
     "snoozeStartTime": null
   },
   "portal.wintermute.org": {
@@ -56,7 +40,21 @@
     "snoozed": false,
     "snoozeTime": 0,
     "Department": "Information Technology Services",
-    "Portal": "portal.example.com",
+    "snoozeStartTime": null
+  },
+  "rpi-desktop-ai.cvad.unt.edu": {
+    "DNS Name": "rpi-desktop-ai.cvad.unt.edu",
+    "IP Address": "10.150.46.60",
+    "Location": "Cloud",
+    "Device Type": "Raspberry Pi",
+    "Description": "Raspberry Pi Desktop",
+    "Owner": "Collge of Visual Arts and Design",
+    "Actions": "URL",
+    "Alert Enable": true,
+    "snoozed": false,
+    "snoozeTime": 0,
+    "Department": "Information Technology Services",
+    "URL": "signage-cdn.cvad.unt.edu/hostnames/rpi-desktop-ai",
     "snoozeStartTime": null
   },
   "sftp.wintermute.org": {
@@ -71,7 +69,6 @@
     "snoozed": false,
     "snoozeTime": 0,
     "Department": "Information Technology Services",
-    "Portal": "portal.example.com",
     "snoozeStartTime": null
   },
   "ssh.wintermute.org": {
@@ -86,8 +83,22 @@
     "snoozed": false,
     "snoozeTime": 0,
     "Department": "Information Technology Services",
-    "Portal": "portal.example.com",
     "snoozeStartTime": null
+  },
+  "url.wintermute.org": {
+    "DNS Name": "url.wintermute.org",
+    "IP Address": "10.150.32.40",
+    "Location": "Cloud",
+    "Device Type": "Server",
+    "Description": "Example Test Device",
+    "Owner": "Division by Infinity",
+    "Actions": "Visit",
+    "Alert Enable": true,
+    "snoozed": false,
+    "snoozeTime": 0,
+    "Department": "Information Technology Services",
+    "snoozeStartTime": null,
+    "Portal": "portal.example.com"
   },
   "vnc.wintermute.org": {
     "DNS Name": "vnc.wintermute.org",
@@ -101,7 +112,6 @@
     "snoozed": false,
     "snoozeTime": 0,
     "Department": "Information Technology Services",
-    "Portal": "portal.example.com",
     "snoozeStartTime": null
   }
 }

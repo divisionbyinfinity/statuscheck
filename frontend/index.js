@@ -16,7 +16,6 @@ const PING_INTERVAL = 5 * 60 * 1000;
 // Snooze label update interval (30 seconds in milliseconds)
 const SNOOZE_UPDATE_INTERVAL = 30 * 1000;
 
-
 // Initialize the FILTER_KEYS object.
 const FILTER_KEYS = {};
 
@@ -150,7 +149,7 @@ function displayStatsTable() {
     // Fallback to liveTable if stats h2 is not found
     if (!statsH2) {
         console.warn('Stats h2 element not found, falling back to before liveTable');
-        insertionPoint = document.getElementById('liveTable');
+        insertionPoint = document.getElementById('-liveTable');
         insertMethod = 'beforebegin';
         if (!insertionPoint) {
             console.error('LiveTable not found, cannot insert stats table');
@@ -533,6 +532,7 @@ const preProcess = async () => {
                         row.classList.remove('snoozed-row');
                         // Sync with backend
                         if (user?.token) {
+                            console.log(`Snooze expired for device ${server.key}, syncing with backend`);
                             await UpdateSnooze(BaseUrl, server.key, 0, fileName, user.token);
                         }
                     }
@@ -652,7 +652,7 @@ const populateTable = () => {
                         </div>
                         <div>
                             <label for="Actions">Actions</label>
-                            <Select id="Actions" name="Actions" required>
+                            <select id="Actions" name="Actions" required>
                                 <option value="SSH">SSH</option>
                                 <option value="HTTP">HTTP</option>
                                 <option value="HTTPS">HTTPS</option>
@@ -660,7 +660,16 @@ const populateTable = () => {
                                 <option value="RDP">RDP</option>
                                 <option value="SFTP">SFTP</option>
                                 <option value="PORTAL">PORTAL</option>
-                            </Select>
+                                <option value="URL">URL</option>
+                            </select>
+                        </div>
+                        <div id="portalField" style="display:none">
+                            <label for="Portal">Portal URL (hostname only)</label>
+                            <input type="text" id="Portal" name="Portal" placeholder="e.g. portal.example.com"/>
+                        </div>
+                        <div id="urlField" style="display:none">
+                            <label for="URL">URL (hostname only)</label>
+                            <input type="text" id="URL" name="URL" placeholder="e.g. example.com"/>
                         </div>
                     </main>
                     <footer>
@@ -670,6 +679,19 @@ const populateTable = () => {
                     </footer>
                 </form>
             `;
+            const actionSelect = modal.querySelector('select[name="Actions"]');
+            const portalField = modal.querySelector('#portalField');
+            const urlField = modal.querySelector('#urlField');
+            actionSelect.addEventListener('change', function () {
+                portalField.style.display = this.value.toUpperCase() === 'PORTAL' ? 'block' : 'none';
+                urlField.style.display = this.value.toUpperCase() === 'URL' ? 'block' : 'none';
+                if (this.value.toUpperCase() !== 'PORTAL') {
+                    modal.querySelector('input[name="Portal"]').value = '';
+                }
+                if (this.value.toUpperCase() !== 'URL') {
+                    modal.querySelector('input[name="URL"]').value = '';
+                }
+            });
             modal.querySelector('#closeModal').addEventListener('click', function (e) {
                 e.preventDefault();
                 modalCont.style.display = 'none';
@@ -716,6 +738,7 @@ const populateTable = () => {
                 server['snoozed'] = false;
                 server['snoozeStartTime'] = null;
                 if (user?.token) {
+                    console.log(`Snooze expired for device ${server.key}, syncing with backend`);
                     UpdateSnooze(BaseUrl, server.key, 0, fileName, user.token);
                 }
             }
@@ -772,7 +795,7 @@ const populateTable = () => {
             if (server['Actions'] === 'SSH') {
                 actionsCell.innerHTML = `<a class="ctr" href="ssh://${server['IP Address']}" target="_blank">SSH</a>`;
             } else if (server['Actions'] === 'HTTP') {
-                actionsCell.innerHTML = `<a class="ctr" href="https://${server['IP Address']}" target="_blank">HTTP</a>`;
+                actionsCell.innerHTML = `<a class="ctr" href="http://${server['IP Address']}" target="_blank">HTTP</a>`;
             } else if (server['Actions'] === 'HTTPS') {
                 actionsCell.innerHTML = `<a class="ctr" href="https://${server['IP Address']}" target="_blank">HTTPS</a>`;
             } else if (server['Actions'] === 'SFTP') {
@@ -783,6 +806,8 @@ const populateTable = () => {
                 actionsCell.innerHTML = `<a class="ctr" href="rdp://${server['IP Address']}" target="_blank">RDP</a>`;
             } else if (server['Actions'].toUpperCase() === 'PORTAL' && server['Portal']) {
                 actionsCell.innerHTML = `<a class="ctr" href="https://${server['Portal']}" target="_blank">Portal</a>`;
+            } else if (server['Actions'].toUpperCase() === 'URL' && server['URL']) {
+                actionsCell.innerHTML = `<a class="ctr" href="https://${server['URL']}" target="_blank">URL</a>`;
             } else {
                 actionsCell.innerHTML = `<a class="ctr" href="${server['Actions']}" target="_blank">Visit</a>`;
             }
@@ -804,6 +829,7 @@ const populateTable = () => {
             statusImage.addEventListener('click', async function (e) {
                 e.preventDefault();
                 const newStatus = !server['Alert Enable'];
+                console.log(`Toggling alert status for device ${server.key} to ${newStatus}`);
                 const res = await MailAlertEnable(BaseUrl, server.key, newStatus, fileName, user.token);
                 if (res.success) {
                     appendAlert(res.message, false);
@@ -818,7 +844,7 @@ const populateTable = () => {
                     }
                     displayStatsTable(); // Update stats after alert status change
                 } else {
-                    appendAlert(res.message || res.error || 'No data found', true);
+                    appendAlert(res.message || res.error || 'Failed to toggle alert status', true);
                 }
             });
             status.appendChild(statusImage);
@@ -875,11 +901,27 @@ const populateTable = () => {
                 });
                 modal.querySelector('form').addEventListener('submit', async function (e) {
                     e.preventDefault();
-                    const snoozeTime = parseInt(document.getElementById('snooze').value, 10);
+                    const snoozeTimeInput = document.getElementById('snooze').value;
+                    const snoozeTime = parseInt(snoozeTimeInput, 10);
                     if (isNaN(snoozeTime) || snoozeTime < 0 || snoozeTime > 4320) {
                         appendAlert('Snooze time must be between 0 and 4320 minutes', true);
                         return;
                     }
+                    if (!user?.token) {
+                        appendAlert('User not authenticated. Please log in again.', true);
+                        modalCont.style.display = 'none';
+                        return;
+                    }
+                    if (!server.key || !fileName) {
+                        appendAlert('Device key or file name missing.', true);
+                        modalCont.style.display = 'none';
+                        return;
+                    }
+                    console.log(`Submitting snooze for device ${server.key}:`, {
+                        snoozeTime,
+                        fileName,
+                        token: user.token.substring(0, 10) + '...'
+                    });
                     document.getElementById("modalSubmit").style.display = 'none';
                     document.getElementById('modalSpinner').style.display = 'block';
                     const res = await UpdateSnooze(BaseUrl, server.key, snoozeTime, fileName, user.token);
@@ -900,10 +942,15 @@ const populateTable = () => {
                             row.classList.remove('snoozed-row');
                         }
                         snoozeImage.src = server['snoozeTime'] > 0 ? './images/snoozeon.png' : './images/snooze.png';
-                        appendAlert(res.message, false);
+                        appendAlert(res.message || 'Snooze updated successfully', false);
                         displayStatsTable(); // Update stats after snooze change
                     } else {
-                        appendAlert(res.message || res.error || 'Failed to update snooze', true);
+                        console.error('Snooze update failed:', {
+                            status: res.status,
+                            error: res.error || res.message || 'Unknown error',
+                            response: res
+                        });
+                        appendAlert(res.error || res.message || 'Failed to update snooze. Please try again.', true);
                     }
                 });
             });
@@ -955,7 +1002,7 @@ const populateTable = () => {
                             </div>
                             <div>
                                 <label for="Actions">Actions</label>
-                                <Select id="Actions" name="Actions" required>
+                                <select id="Actions" name="Actions" required>
                                     <option value="SSH">SSH</option>
                                     <option value="HTTP">HTTP</option>
                                     <option value="HTTPS">HTTPS</option>
@@ -963,11 +1010,16 @@ const populateTable = () => {
                                     <option value="RDP">RDP</option>
                                     <option value="SFTP">SFTP</option>
                                     <option value="PORTAL">PORTAL</option>
-                                </Select>
+                                    <option value="URL">URL</option>
+                                </select>
                             </div>
                             <div id="portalField" style="display:none">
                                 <label for="Portal">Portal URL (hostname only)</label>
                                 <input type="text" id="Portal" name="Portal" placeholder="e.g. portal.example.com"/>
+                            </div>
+                            <div id="urlField" style="display:none">
+                                <label for="URL">URL (hostname only)</label>
+                                <input type="text" id="URL" name="URL" placeholder="e.g. example.com"/>
                             </div>
                         </main>
                         <footer>
@@ -977,7 +1029,7 @@ const populateTable = () => {
                         </footer>
                     </form>
                 `;
-                Object.keys(server).forEach(key => {
+                Object.keys(server).forEach((key) => {
                     const input = modal.querySelector(`input[name="${key}"]`);
                     if (input) {
                         input.value = server[key];
@@ -992,19 +1044,27 @@ const populateTable = () => {
                 });
                 const actionSelect = modal.querySelector('select[name="Actions"]');
                 const portalField = modal.querySelector('#portalField');
+                const urlField = modal.querySelector('#urlField');
                 const portalInput = modal.querySelector('input[name="Portal"]');
+                const urlInput = modal.querySelector('input[name="URL"]');
                 if (actionSelect.value.toUpperCase() === 'PORTAL') {
                     portalField.style.display = 'block';
                     portalInput.value = server['Portal'] || '';
+                } else if (actionSelect.value.toUpperCase() === 'URL') {
+                    urlField.style.display = 'block';
+                    urlInput.value = server['URL'] || '';
                 } else {
                     portalField.style.display = 'none';
+                    urlField.style.display = 'none';
                 }
                 actionSelect.addEventListener('change', function () {
-                    if (this.value.toUpperCase() === 'PORTAL') {
-                        portalField.style.display = 'block';
-                    } else {
-                        portalField.style.display = 'none';
+                    portalField.style.display = this.value.toUpperCase() === 'PORTAL' ? 'block' : 'none';
+                    urlField.style.display = this.value.toUpperCase() === 'URL' ? 'block' : 'none';
+                    if (this.value.toUpperCase() !== 'PORTAL') {
                         portalInput.value = '';
+                    }
+                    if (this.value.toUpperCase() !== 'URL') {
+                        urlInput.value = '';
                     }
                 });
                 modal.querySelector('#closeModal').addEventListener('click', function (e) {
@@ -1019,14 +1079,16 @@ const populateTable = () => {
                     formData.forEach((value, key) => {
                         deviceObj[key] = value;
                     });
+                    document.getElementById("modalSubmit").style.display = 'none';
+                    document.getElementById('modalSpinner').style.display = 'block';
                     const res = await updateDevice(BaseUrl, deviceObj, fileName, server.key, user.token);
+                    document.getElementById('modalSpinner').style.display = 'none';
+                    document.getElementById("modalSubmit").style.display = 'block';
                     if (res.success) {
                         modalCont.style.display = 'none';
                         appendAlert(res.message, false);
-                        Object.keys(deviceObj).forEach(key => {
-                            server[key] = deviceObj[key];
-                        });
-                        populateTable();
+                        await preProcess();
+                        await pingdevices();
                     } else {
                         appendAlert(res.message || res.error || 'No data found', true);
                     }

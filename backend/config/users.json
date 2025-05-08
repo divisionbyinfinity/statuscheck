@@ -1,17 +1,18 @@
 {
   "admin": {
     "username": "admin",
-    "password": "$2b$10$jb76X5pxtHb.RBKU7OL6JuR2haLqQaQgzA4AB/o9AIfy853tbHyQy",
+    "password": "$2b$10$YGyZuNc7wYZ9cqiTA5LLjeDybFqMF9NFgmmJDcP1pfm3QUeZv7ILa",
     "role": "admin",
     "files": [
       "*"
     ],
     "userId": "c58b1722-2c4d-429e-9793-5d3bc6abbb9f",
-    "lastLogin": "2025-05-07T14:25:29.362Z"
+    "lastLogin": "2025-05-08T17:12:13.575Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjNThiMTcyMi0yYzRkLTQyOWUtOTc5My01ZDNiYzZhYmJiOWYiLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwibGFzdExvZ2luIjoiMjAyNS0wNS0wOFQxNDozMDowNC4xNjRaIiwiZmlsZXMiOlsiKiJdLCJpYXQiOjE3NDY3MTQ2MDQsImV4cCI6MTc0NjgwMTAwNH0.VwSTWoVhI3S3lqBaUhH3v_dTZyjb3ak7XhWrtIhVUrM"
   },
   "altadmin": {
     "username": "altadmin",
-    "password": "$2b$10$P0uRILrg7mi5BO1zWX/M5eMbvEyDKjk5t0ykvf9IwORK.rrUCwjK.",
+    "password": "$2b$10$60cBe5kQZo4k7gkg5lGfIuxGP0B/fa.yb/J3NLahkMcF/n.i/YHV2",
     "role": "admin",
     "files": [
       "devices_alt.json"
