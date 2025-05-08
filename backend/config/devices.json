@@ -42,7 +42,7 @@
     "Department": "Information Technology Services",
     "snoozeStartTime": null
   },
-  "rpi-desktop-ai.cvad.unt.edu": {
+  "rpi-desktop-ai.cvad.unt.edu-url": {
     "DNS Name": "rpi-desktop-ai.cvad.unt.edu",
     "IP Address": "10.150.46.60",
     "Location": "Cloud",
@@ -55,6 +55,20 @@
     "snoozeTime": 0,
     "Department": "Information Technology Services",
     "URL": "signage-cdn.cvad.unt.edu/hostnames/rpi-desktop-ai",
+    "snoozeStartTime": null
+  },
+  "rpi-desktop-ai.cvad.unt.edu-ssh": {
+    "DNS Name": "rpi-desktop-ai.cvad.unt.edu",
+    "IP Address": "10.150.46.60",
+    "Location": "Cloud",
+    "Device Type": "Raspberry Pi",
+    "Description": "Raspberry Pi Desktop",
+    "Owner": "Collge of Visual Arts and Design",
+    "Actions": "SSH",
+    "Alert Enable": true,
+    "snoozed": false,
+    "snoozeTime": 0,
+    "Department": "Information Technology Services",
     "snoozeStartTime": null
   },
   "sftp.wintermute.org": {
