@@ -15,6 +15,7 @@ node hash_passwords.js
 ```
 Check that the users.json now has your passwords hashed.  
 
+![Alt](https://repobeats.axiom.co/api/embed/111ff12b39f255f67297890ff1d639368f56c56b.svg "Repobeats analytics image")
 
 - [Introduction](#introduction)
   - [Dashboard](#dashboard)
